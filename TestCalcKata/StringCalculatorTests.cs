@@ -61,7 +61,16 @@ namespace TestCalcKata
         {
             var sut = new StringCalculator();
             var result = Assert.Throws<Exception>(() => sut.Add(calcInputs));
-            Assert.Equal($"Negatives not allowed:  {negativeNumber}", result.Message);
+            Assert.Equal($"Negatives not allowed:{negativeNumber}", result.Message);
+        }
+
+        [Theory]
+        [InlineData("//;\n1;3;-5,-4", "-5,-4")]
+        public void Throws_An_Exception_For_List_Of_Negative_Numbers(string calcInputs, string negativeNumbers)
+        {
+            var sut = new StringCalculator();
+            var result = Assert.Throws<Exception>(() => sut.Add(calcInputs));
+            Assert.Equal($"Negatives not allowed:{negativeNumbers}", result.Message);
         }
     }
 }

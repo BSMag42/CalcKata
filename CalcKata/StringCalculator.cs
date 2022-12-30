@@ -22,16 +22,12 @@ public class StringCalculator
             .Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries)
             .Select(int.Parse);
 
-        var negativeNumber=0;
-        foreach (var isNegativeInput in splitInputs)
+        var negativeNumbers = splitInputs.Where(x=> x <0).ToList();
+        if (negativeNumbers.Any())
         {
-            if (isNegativeInput < 0)
-            {
-                negativeNumber = isNegativeInput;
-                throw new Exception($"Negatives not allowed:  {negativeNumber}");
-            }
+            throw new Exception($"Negatives not allowed:{string.Join(",", negativeNumbers)}" );
         }
-
+        
         return splitInputs.Sum();
     }
 

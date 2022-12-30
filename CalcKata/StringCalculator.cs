@@ -7,7 +7,9 @@ public class StringCalculator
 
     public int Add(string numbers)
     {
-        var splitInputs = numbers.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries)
+        var delimiters = new char[] { ',', '\n' };
+        var splitInputs = numbers
+            .Split(delimiters, StringSplitOptions.RemoveEmptyEntries)
             .Select(int.Parse);
 
         return splitInputs.Sum();

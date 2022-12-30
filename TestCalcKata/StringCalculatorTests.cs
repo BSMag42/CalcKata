@@ -45,5 +45,14 @@ namespace TestCalcKata
             Assert.Equal(expected, result);
         }
 
+        [Theory]
+        [InlineData("//;\n1;3", 4)]
+        [InlineData("//;\n1;3;5", 9)]
+        public void Returns_Sum_With_Any_Delimiter(string calcInputs, int expected)
+        {
+            var sut = new StringCalculator();
+            var result = sut.Add(calcInputs);
+            Assert.Equal(expected, result);
+        }
     }
 }
